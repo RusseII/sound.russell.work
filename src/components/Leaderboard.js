@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { Table, Row, Col, Typography } from 'antd'
+import { Table, Row, Col, Typography, Tag } from 'antd'
 import styles from './Leaderboard.less'
 const {Title} = Typography
+
 
 const timeFormater = (hours, minutes, seconds) => {
   let hourString = ''
@@ -56,19 +57,18 @@ const LeaderBoard = ({ dataSource, location }) => {
       defaultFilteredValue: ['visit'],
       onFilter: (value, data) => data.city !== value,
       render: (text, data) => {
-        let yourLocationFlag = ''
         const { city: userCity, state: userState } = location || {}
         let { city, state } = data
         if (!city & !state) return 'No Location'
         if (!city) city = 'Unknown City'
         if (!state) state = 'Unknown State'
         if (userCity === data.city && userState === data.state) {
-          yourLocationFlag = "(Your location)"
+          return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#108ee9'>Your Location</Tag></div>
         }
       
        
       
-        return `${city}, ${state} ${yourLocationFlag}`
+        return `${city}, ${state}`
       },
       width: '50%'
     },
