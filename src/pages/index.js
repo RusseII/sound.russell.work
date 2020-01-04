@@ -28,10 +28,21 @@ const BackgroundNoise = () => {
   const update = async (location) => {
     const body = location ? JSON.stringify(location) : null
     const url = 'https://4mpgsamyqb.execute-api.us-east-1.amazonaws.com/update_listen'
-    const leaderboard = await fetch(url, { method: 'POST', body  })
-    const leaderboardJson = await leaderboard.json()
-    setLeaderboard(leaderboardJson)
+    const leaderboardReponse = await fetch(url, { method: 'POST', body  })
+    const leaderboardJson = await leaderboardReponse.json()
+    console.log(leaderboard)
+    if (leaderboard && leaderboardJson) {
+    leaderboard.forEach((location, index) => {
+      // console.log(location.seconds, leaderboardJson[index].seconds)
+      if (location.seconds !== leaderboardJson[index].seconds)
+      // console.log("triggered")
+      leaderboardJson[index].online = true
+    })
+    // console.log(leaderboardJson)
   }
+    setLeaderboard(leaderboardJson)
+  
+}
 
   const useMount = () =>  useEffect(() => {getCoords()}, [])
   useMount()

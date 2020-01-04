@@ -47,6 +47,7 @@ const LeaderBoard = ({ dataSource, location }) => {
   const highlight = (data) => {
     const { city, state } = location || {}
     if (city === data.city && state === data.state) { return styles.selected }
+    if (data.online) { return styles.online }
   }
 
   const columns = [
@@ -59,11 +60,20 @@ const LeaderBoard = ({ dataSource, location }) => {
       render: (text, data) => {
         const { city: userCity, state: userState } = location || {}
         let { city, state } = data
-        if (!city & !state) return 'No Location'
+        if (!city & !state) {
+          if (data.online) {
+            return <div>{`No Location`}<Tag style={{marginLeft: 8}} color='#52c41a'>Online</Tag></div>
+            }
+
+          return 'No Location'
+        }
         if (!city) city = 'Unknown City'
         if (!state) state = 'Unknown State'
         if (userCity === data.city && userState === data.state) {
-          return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#108ee9'>Your Location</Tag></div>
+          return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#1890ff'>Your Location</Tag></div>
+        }
+        if (data.online) {
+        return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#52c41a'>Online</Tag></div>
         }
       
        
