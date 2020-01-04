@@ -66,7 +66,8 @@ const LeaderBoard = ({ dataSource, location }) => {
        
         if (!city & !state) return 'No Location'
         return `${city}, ${state} ${yourLocationFlag}`
-      }
+      },
+      width: '50%'
     },
     {
       title: 'Time',
@@ -82,11 +83,12 @@ const LeaderBoard = ({ dataSource, location }) => {
         const seconds = totalSecondsLeft % 60;
         return timeFormater(hours, minutes, seconds)
   
-      }
+      },
+      width: '50%'
     },
   ];
-  return (<Row type='flex' justify='center'>
-    <Col style={{ backgroundColor: 'white' }} xs={24} sm={20} md={16} lg={12} xl={8}> <Title style={{marginTop: 16}}>Leaderboard</Title> <Table rowClassName={highlight} dataSource={dataSource} columns={columns} pagination={false} /> </Col>
+  return (<Row  type='flex' justify='center'>
+    <Col className={styles.box} xs={24} sm={20} md={16} lg={12} xl={8}> <Title style={{marginTop: 16}}>Leaderboard</Title> <Table rowClassName={highlight} dataSource={dataSource} columns={columns} pagination={false} /> </Col>
 
   </Row>
   )
