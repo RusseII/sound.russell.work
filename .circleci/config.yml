@@ -25,7 +25,5 @@ jobs:
           name: Push to s3 PROD
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              CI=false yarn build
-              aws s3 sync dist/ s3://sound.russell.work
-              aws cloudfront create-invalidation --distribution-id ERTGV5V7KXKJY  --paths "/*"
+              CI=false yarn deploy
             fi

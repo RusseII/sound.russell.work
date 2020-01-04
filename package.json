@@ -6,7 +6,7 @@
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
     "precommit": "lint-staged",
-    "deploy": "yarn build && s3cmd sync dist/* s3://sound.deephire.com && aws cloudfront create-invalidation --distribution-id ERTGV5V7KXKJY  --paths '/*' && echo 'Deployed Successfully' "
+    "deploy": "yarn build && aws s3 sync dist/ s3://sound.russell.work --delete && aws cloudfront create-invalidation --distribution-id ERTGV5V7KXKJY  --paths '/*' && echo 'Deployed Successfully' "
   },
   "dependencies": {
     "antd": "^3.26.6",

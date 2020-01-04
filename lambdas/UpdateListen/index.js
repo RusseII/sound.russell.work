@@ -31,7 +31,7 @@ async function queryDatabase(db, body) {
 
     await db.collection('sound').update(
         { city, state },
-        { $inc: { seconds: 10 } },
+        { $inc: { seconds: 1 } },
         {
             upsert: true
 

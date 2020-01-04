@@ -37,7 +37,7 @@ const BackgroundNoise = () => {
 
   useEffect(() => {
     const interval = setInterval(() =>
-      update(location), 10000);
+      update(location), 1000);
     return () => clearInterval(interval);
   }, [location]);
 
