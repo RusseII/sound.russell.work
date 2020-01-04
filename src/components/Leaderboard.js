@@ -58,13 +58,16 @@ const LeaderBoard = ({ dataSource, location }) => {
       render: (text, data) => {
         let yourLocationFlag = ''
         const { city: userCity, state: userState } = location || {}
-        const { city, state } = data
+        let { city, state } = data
+        if (!city & !state) return 'No Location'
+        if (!city) city = 'Unknown City'
+        if (!state) state = 'Unknown State'
         if (userCity === data.city && userState === data.state) {
           yourLocationFlag = "(Your location)"
         }
       
        
-        if (!city & !state) return 'No Location'
+      
         return `${city}, ${state} ${yourLocationFlag}`
       },
       width: '50%'
