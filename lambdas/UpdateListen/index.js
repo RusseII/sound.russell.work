@@ -14,6 +14,7 @@ function connectToDatabase(uri) {
 
     return MongoClient.connect(uri)
         .then(db => {
+            console.log('=> creating a new connection');
             cachedDb = db.db('russell_work');
             return cachedDb;
         });

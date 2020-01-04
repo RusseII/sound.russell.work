@@ -40,7 +40,11 @@ const BackgroundNoise = () => {
     })
     // console.log(leaderboardJson)
   }
+  if (leaderboardReponse.status === 200) {
     setLeaderboard(leaderboardJson)
+  }
+  else {console.log("error")}
+    
   
 }
 

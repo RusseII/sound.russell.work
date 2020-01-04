@@ -46,7 +46,9 @@ const LeaderBoard = ({ dataSource, location }) => {
 
   const highlight = (data) => {
     const { city, state } = location || {}
-    if (city === data.city && state === data.state) { return styles.selected }
+    // below wants null == undefined to evaulate to true
+    // eslint-disable-next-line eqeqeq
+    if (city == data.city && state == data.state) { return styles.selected }
     if (data.online) { return styles.online }
   }
 
@@ -67,11 +69,13 @@ const LeaderBoard = ({ dataSource, location }) => {
 
           return 'No Location'
         }
-        if (!city) city = 'Unknown City'
-        if (!state) state = 'Unknown State'
+  
         if (userCity === data.city && userState === data.state) {
           return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#1890ff'>Your Location</Tag></div>
         }
+        if (!city) city = 'Unknown City'
+        if (!state) state = 'Unknown State'
+
         if (data.online) {
         return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#52c41a'>Online</Tag></div>
         }
