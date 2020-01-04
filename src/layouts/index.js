@@ -1,10 +1,12 @@
+import {Layout} from 'antd'
 import styles from './index.css';
+const { Footer, Content, Header } = Layout;
 
 function BasicLayout(props) {
   return (
-      <div className={styles.normal}>
+      <Content className={styles.normal}>
       {props.children}
-    </div>
+    </Content>
   );
 }
 

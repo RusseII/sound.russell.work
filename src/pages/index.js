@@ -1,26 +1,51 @@
+import React, { useState, useEffect } from 'react';
+import SoundPlayer from '../components/SoundPlayer'
+import Leaderboard from '../components/LeaderBoard'
 
-import React, { useState } from 'react';
-import Sound from 'react-sound';
+
+const BackgroundNoise = () => {
+
+  const [location, setLocation] = useState(null)
+  const [leaderboard, setLeaderboard] = useState(null)
+
+
+  const getCoords = async () => {
+    update({city: "visit", state:'visit'})
+    navigator.geolocation.getCurrentPosition(getLocation, (err) => console.log(err))
+  }
+
+  const getLocation = async ({ coords: { longitude, latitude } }) => {
+    // hack me with the API and make everyone sad :(
+    const url = `https://api.opencagedata.com/geocode/v1/json?key=11b9d7f2104c4b6bb9a860a8424ff3ba&q=${latitude}%2C${longitude}&pretty=1&no_annotations=1`
+    const data = await fetch(url)
+    const jsonData = await data.json()
+    console.log(jsonData)
+    setLocation(jsonData?.results?.[0]?.components)
+
+  }
+
+
+  const update = async (location) => {
+    const url = 'https://4mpgsamyqb.execute-api.us-east-1.amazonaws.com/update_listen'
+    const leaderboard = await fetch(url, { method: 'POST', body: JSON.stringify(location) })
+    const leaderboardJson = await leaderboard.json()
+    setLeaderboard(leaderboardJson)
+  }
+
+  const useMount = () =>  useEffect(() => {getCoords()}, [])
+  useMount()
+
+  useEffect(() => {
+    const interval = setInterval(() =>
+      update(location), 10000);
+    return () => clearInterval(interval);
+  }, [location]);
 
 
 
-const MyComponentWithSound = () => {
-  const [playCount, setPlayCount] = useState(0)
-  const [allowAutoPlayHack, setAllowAutoPlayHack] = useState(false)
-return ( <>
-  <Sound key={allowAutoPlayHack}
-      // host this somewhere else, or change for a better soundtrack.
-      // this file is 10h long and 600mb
-      url="https://ia600803.us.archive.org/24/items/RainSounds10HoursTheSoundOfRainMeditationAutogencTrainingDeepSleepRelaxingSounds/Rain%20Sounds%2010%20HoursThe%20Sound%20of%20Rain%20MeditationAutogenc%20Training%20Deep%20SleepRelaxing%20Sounds.mp3"
-      playStatus={Sound.status.PLAYING}
-      loop
-      // onPlaying gets rendered every second, no clue why
-      onPlaying={() => setPlayCount(count => count + 1)}
-    />
-    { playCount < 1 && <button onClick={() => setAllowAutoPlayHack(true)}>allow sound to autoplay</button>}
-   </>
-)
+  return (<div><SoundPlayer /><Leaderboard dataSource={leaderboard} /></div>
+  )
 
 }
 
-export default MyComponentWithSound
+export default BackgroundNoise
