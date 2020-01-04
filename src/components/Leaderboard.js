@@ -83,7 +83,7 @@ const LeaderBoard = ({ dataSource, location }) => {
       width: '50%'
     },
     {
-      title: 'Time',
+      title: 'Time spent on page',
       // dataIndex: 'seconds',
       key: 'seconds',
       sortOrder: 'decend',
