@@ -16,7 +16,7 @@ const SoundPlayer = () => {
             // onPlaying gets rendered every second, no clue why
             onPlaying={() => setPlayCount(count => count + 1)}
         />
-        {playCount < 1 && <Button type='primary'style={{marginTop: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to autoplay</Button>}
+        {playCount < 1 && <Button type='primary'style={{marginTop: 16, marginBottom: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to autoplay</Button>}
     </>
     )
 

@@ -44,7 +44,7 @@ const BackgroundNoise = () => {
 
 
 
-  return (<div>><Leaderboard dataSource={leaderboard} location={location} /><SoundPlayer/></div>
+  return (<div><SoundPlayer/><Leaderboard dataSource={leaderboard} location={location} /></div>
   )
 
 }
