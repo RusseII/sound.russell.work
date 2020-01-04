@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import Sound from 'react-sound';
+import {Button} from 'antd'
 
 const SoundPlayer = () => {
     const [playCount, setPlayCount] = useState(0)
@@ -15,7 +16,7 @@ const SoundPlayer = () => {
             // onPlaying gets rendered every second, no clue why
             onPlaying={() => setPlayCount(count => count + 1)}
         />
-        {playCount < 1 && <button onClick={() => setAllowAutoPlayHack(true)}>allow sound to autoplay</button>}
+        {playCount < 1 && <Button type='primary'style={{marginTop: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to autoplay</Button>}
     </>
     )
 

@@ -50,7 +50,10 @@ async function queryDatabase(db, body) {
 
 const executeMongo = (event, context, callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
-    const body = JSON.parse(event.body)
+    let body = {};
+    if (event.body !== null && event.body !== undefined) {
+    body = JSON.parse(event.body)
+    }
 
     console.log('event: ', event);
     console.log(body)

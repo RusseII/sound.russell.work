@@ -26,8 +26,9 @@ const BackgroundNoise = () => {
 
 
   const update = async (location) => {
+    const body = location ? JSON.stringify(location) : null
     const url = 'https://4mpgsamyqb.execute-api.us-east-1.amazonaws.com/update_listen'
-    const leaderboard = await fetch(url, { method: 'POST', body: JSON.stringify(location) })
+    const leaderboard = await fetch(url, { method: 'POST', body  })
     const leaderboardJson = await leaderboard.json()
     setLeaderboard(leaderboardJson)
   }
@@ -43,7 +44,7 @@ const BackgroundNoise = () => {
 
 
 
-  return (<div><SoundPlayer /><Leaderboard dataSource={leaderboard} /></div>
+  return (<div>><Leaderboard dataSource={leaderboard} location={location} /><SoundPlayer/></div>
   )
 
 }
