@@ -12,7 +12,7 @@ const SoundPlayer = () => {
     const [working, setWorking] = useState(true)
     const songLogic = () => {
         const currentMinutes = new Date().getMinutes()
-       if (currentMinutes >= 0 &&  currentMinutes <= 5 || (currentMinutes >= 30 &&  currentMinutes <= 35)) {
+       if (currentMinutes >= 0 &&  currentMinutes < 5 || (currentMinutes >= 30 &&  currentMinutes < 35)) {
            setWorking(false)
 
        } 
