@@ -50,6 +50,7 @@ const LeaderBoard = ({ dataSource, location }) => {
     // eslint-disable-next-line eqeqeq
     if (city == data.city && state == data.state) { return styles.selected }
     if (data.online) { return styles.online }
+    return styles.normal
   }
 
   const columns = [

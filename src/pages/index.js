@@ -10,7 +10,7 @@ const BackgroundNoise = () => {
 
 
   const getCoords = async () => {
-    update({city: "visit", state:'visit'})
+    update({ city: "visit", state: 'visit' })
     navigator.geolocation.getCurrentPosition(getLocation, (err) => console.log(err))
   }
 
@@ -19,7 +19,6 @@ const BackgroundNoise = () => {
     const url = `https://api.opencagedata.com/geocode/v1/json?key=11b9d7f2104c4b6bb9a860a8424ff3ba&q=${latitude}%2C${longitude}&pretty=1&no_annotations=1`
     const data = await fetch(url)
     const jsonData = await data.json()
-    console.log(jsonData)
     setLocation(jsonData?.results?.[0]?.components)
 
   }
@@ -28,27 +27,29 @@ const BackgroundNoise = () => {
   const update = async (location) => {
     const body = location ? JSON.stringify(location) : null
     const url = 'https://4mpgsamyqb.execute-api.us-east-1.amazonaws.com/update_listen'
-    const leaderboardReponse = await fetch(url, { method: 'POST', body  })
+    const leaderboardReponse = await fetch(url, { method: 'POST', body })
     const leaderboardJson = await leaderboardReponse.json()
-    console.log(leaderboard)
-    if (leaderboard && leaderboardJson) {
-    leaderboard.forEach((location, index) => {
-      // console.log(location.seconds, leaderboardJson[index].seconds)
-      if (location.seconds !== leaderboardJson[index].seconds)
-      // console.log("triggered")
-      leaderboardJson[index].online = true
-    })
-    // console.log(leaderboardJson)
-  }
-  if (leaderboardReponse.status === 200) {
-    setLeaderboard(leaderboardJson)
-  }
-  else {console.log("error")}
-    
-  
-}
 
-  const useMount = () =>  useEffect(() => {getCoords()}, [])
+    if (leaderboard && leaderboardJson) {
+      leaderboard.forEach((location, index) => {
+        // console.log(location.seconds, leaderboardJson[index].seconds)
+        if (location.seconds !== leaderboardJson[index].seconds) {
+          // console.log("triggered")
+
+          leaderboardJson[index].online = true
+        }
+      })
+      // console.log(leaderboardJson)
+    }
+    if (leaderboardReponse.status === 200) {
+      setLeaderboard(leaderboardJson)
+    }
+    else { console.log("error") }
+
+
+  }
+
+  const useMount = () => useEffect(() => { getCoords() }, [])
   useMount()
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const BackgroundNoise = () => {
 
 
 
-  return (<div><SoundPlayer/><Leaderboard dataSource={leaderboard} location={location} /></div>
+  return (<div><SoundPlayer /><Leaderboard dataSource={leaderboard} location={location} /></div>
   )
 
 }
