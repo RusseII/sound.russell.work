@@ -4,8 +4,9 @@ import Sound from 'react-sound';
 import {Button} from 'antd'
 
 
-const workAudo = 'https://ia600803.us.archive.org/24/items/RainSounds10HoursTheSoundOfRainMeditationAutogencTrainingDeepSleepRelaxingSounds/Rain%20Sounds%2010%20HoursThe%20Sound%20of%20Rain%20MeditationAutogenc%20Training%20Deep%20SleepRelaxing%20Sounds.mp3'
+const rainAudio = 'https://ia600803.us.archive.org/24/items/RainSounds10HoursTheSoundOfRainMeditationAutogencTrainingDeepSleepRelaxingSounds/Rain%20Sounds%2010%20HoursThe%20Sound%20of%20Rain%20MeditationAutogenc%20Training%20Deep%20SleepRelaxing%20Sounds.mp3'
 const breakAudio = 'https://s3.us-east-2.amazonaws.com/russell.work.data/So+Blue.mp3'
+const chillAudio = `https://s3.us-east-2.amazonaws.com/russell.work.data/'Forgotten+Memories'+-+Instrumental+Chill+Mix.mp3`
 const SoundPlayer = () => {
     const [playCount, setPlayCount] = useState(0)
     const [allowAutoPlayHack, setAllowAutoPlayHack] = useState(false)
@@ -26,7 +27,7 @@ const SoundPlayer = () => {
 
     return (<>
         <Sound key={allowAutoPlayHack}
-            url={working ? workAudo : breakAudio}
+            url={working ? chillAudio : breakAudio}
             playStatus={Sound.status.PLAYING}
             loop
             // onPlaying gets rendered every second, no clue why

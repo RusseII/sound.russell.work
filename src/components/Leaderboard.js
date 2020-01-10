@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Table, Row, Col, Typography, Tag } from 'antd'
+import { Table, Row, Col, Typography, Tag, Spin } from 'antd'
 import styles from './Leaderboard.less'
-const {Title} = Typography
+const { Title } = Typography
 
 
 const timeFormater = (hours, minutes, seconds) => {
@@ -65,24 +65,24 @@ const LeaderBoard = ({ dataSource, location }) => {
         let { city, state } = data
         if (!city & !state) {
           if (data.online) {
-            return <div>{`No Location`}<Tag style={{marginLeft: 8}} color='#52c41a'>Online</Tag></div>
-            }
+            return <div>{`No Location`}<Tag style={{ marginLeft: 8 }} color='#52c41a'>Online</Tag></div>
+          }
 
           return 'No Location'
         }
-  
+
         if (userCity === data.city && userState === data.state) {
-          return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#1890ff'>Your Location</Tag></div>
+          return <div>{`${city} ${state}`}<Tag style={{ marginLeft: 8 }} color='#1890ff'>Your Location</Tag></div>
         }
         if (!city) city = 'Unknown City'
         if (!state) state = 'Unknown State'
 
         if (data.online) {
-        return <div>{`${city} ${state}`}<Tag style={{marginLeft: 8}} color='#52c41a'>Online</Tag></div>
+          return <div>{`${city} ${state}`}<Tag style={{ marginLeft: 8 }} color='#52c41a'>Online</Tag></div>
         }
-      
-       
-      
+
+
+
         return `${city}, ${state}`
       },
       width: '50%'
@@ -100,13 +100,19 @@ const LeaderBoard = ({ dataSource, location }) => {
         const minutes = Math.floor(totalSecondsLeft / 60);
         const seconds = totalSecondsLeft % 60;
         return timeFormater(hours, minutes, seconds)
-  
+
       },
       width: '50%'
     },
   ];
-  return (<Row  type='flex' justify='center'>
-    <Col className={styles.box} xs={24} sm={20} md={16} lg={12} xl={8}> <Title style={{marginTop: 16}}>Leaderboard</Title> <Table rowClassName={highlight} dataSource={dataSource} columns={columns} pagination={false} /> </Col>
+  return (<Row type='flex' justify='center'>
+    <Col className={ Boolean(dataSource) ? styles.box : styles.loading
+    } xs={24} sm={20} md={16} lg={12} xl={8}> 
+    <Title style={{ marginTop: 16 }}>Time Per Location</Title> 
+    <Spin spinning={!Boolean(dataSource)}>
+    <Table rowClassName={highlight} dataSource={dataSource} columns={columns} />
+    </Spin>
+     </Col>
 
   </Row>
   )
