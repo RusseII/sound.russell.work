@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Sound from 'react-sound';
-import { Button, Row, Col } from 'antd'
+import { Button, Row, Col, Icon, Slider } from 'antd'
 
 import ReactPlayer from 'react-player'
 import styles from './SoundPlayer.less'
@@ -11,8 +11,32 @@ import styles from './SoundPlayer.less'
 // const chillAudio = `https://s3.us-east-2.amazonaws.com/russell.work.data/'Forgotten+Memories'+-+Instrumental+Chill+Mix.mp3`
 // const chillAudio = "https://www.youtube.com/embed/ajuCAfqVWbc"
 
+const IconSlider = ({volume, setVolume}) => {
+
+    const min = 0
+    const max = 10
+   
+    const updateVolume = (volume) => {
+        localStorage.setItem('volume', volume)
+        setVolume(volume)
+    }
+
+  
+ 
+    return (
+      <div className={styles.iconWrapper}>
+        <Slider  max={10} onChange={updateVolume} value={volume} />
+        <Icon style={{ color: 'rgba(255,255,255,.5' }} type="sound" />
+      </div>
+    );
+  }
+
+
 const SoundPlayer = () => {
+    const startingVolume = localStorage.getItem("volume")
     const [playing, setPlaying] = useState()
+    const [volume, setVolume] = useState(startingVolume ? startingVolume: 10)
+
 
     // const [working, setWorking] = useState(true)
     // const songLogic = () => {
@@ -44,7 +68,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=hHW1oY26kxQ'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/2xARD1.gif'
                     playing={playing === 1}
                     onReady={() => setPlaying(1)}
 
@@ -58,7 +83,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=2atQnvunGCo'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/vl7gLX.gif'
                     playing={playing === 2}
                     onReady={() => setPlaying(2)}
                     onPlay={() => setPlaying(2)}
@@ -70,7 +96,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=ZmNoiihmTXs'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/E87lQ0.gif'
                     playing={playing === 3}
                     onReady={() => setPlaying(3)}
                     onPlay={() => setPlaying(3)}
@@ -84,7 +111,9 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=rbC1gN_-ACc'
-                    light
+                    volume={volume/10}
+                    light="https://j.gifs.com/MwmjoO.gif"
+                    
                     playing={playing === 4}
                     onReady={() => setPlaying(4)}
                     onPlay={() => setPlaying(4)}
@@ -96,7 +125,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=-WOA1Dr2EUo'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/r8N0VK.gif'
                     playing={playing === 5}
                     onReady={() => setPlaying(5)}
                     onPlay={() => setPlaying(5)}
@@ -108,7 +138,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=g-pqmuYPHPs'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/4QD8GV.gif'
                     playing={playing === 6}
                     onReady={() => setPlaying(6)}
                     onPlay={() => setPlaying(6)}
@@ -121,7 +152,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=05689ErDUdM'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/Gv7ZzL.gif'
                     playing={playing === 7}
                     onReady={() => setPlaying(7)}
                     onPlay={() => setPlaying(7)}
@@ -133,7 +165,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=IjMESxJdWkg'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/xnNGjq.gif'
                     playing={playing === 8}
                     onReady={() => setPlaying(8)}
                     onPlay={() => setPlaying(8)}
@@ -145,7 +178,8 @@ const SoundPlayer = () => {
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=L9Q1HUdUMp0'
-                    light
+                    volume={volume/10}
+                    light='https://j.gifs.com/D17R6y.gif'
                     playing={playing === 9}
                     onReady={() => setPlaying(9)}
                     onPlay={() => setPlaying(9)}
@@ -154,7 +188,9 @@ const SoundPlayer = () => {
                 />
             </div></Col>
       </Row>
-      
+      <Row type='flex' justify='center'>
+      <IconSlider volume={volume} setVolume={setVolume}></IconSlider>
+      </Row>
     </>
     )
 
