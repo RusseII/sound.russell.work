@@ -13,8 +13,7 @@ import styles from './SoundPlayer.less'
 
 const IconSlider = ({volume, setVolume}) => {
 
-    const min = 0
-    const max = 10
+
    
     const updateVolume = (volume) => {
         localStorage.setItem('volume', volume)
@@ -69,7 +68,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=hHW1oY26kxQ'
                     volume={volume/10}
-                    light='https://j.gifs.com/2xARD1.gif'
+                    light
                     playing={playing === 1}
                     onReady={() => setPlaying(1)}
 
@@ -84,7 +83,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=2atQnvunGCo'
                     volume={volume/10}
-                    light='https://j.gifs.com/vl7gLX.gif'
+                    light
                     playing={playing === 2}
                     onReady={() => setPlaying(2)}
                     onPlay={() => setPlaying(2)}
@@ -97,7 +96,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=ZmNoiihmTXs'
                     volume={volume/10}
-                    light='https://j.gifs.com/E87lQ0.gif'
+                    light
                     playing={playing === 3}
                     onReady={() => setPlaying(3)}
                     onPlay={() => setPlaying(3)}
@@ -112,7 +111,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=rbC1gN_-ACc'
                     volume={volume/10}
-                    light="https://j.gifs.com/MwmjoO.gif"
+                    light
                     
                     playing={playing === 4}
                     onReady={() => setPlaying(4)}
@@ -126,7 +125,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=-WOA1Dr2EUo'
                     volume={volume/10}
-                    light='https://j.gifs.com/r8N0VK.gif'
+                    light
                     playing={playing === 5}
                     onReady={() => setPlaying(5)}
                     onPlay={() => setPlaying(5)}
@@ -139,7 +138,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=g-pqmuYPHPs'
                     volume={volume/10}
-                    light='https://j.gifs.com/4QD8GV.gif'
+                    light
                     playing={playing === 6}
                     onReady={() => setPlaying(6)}
                     onPlay={() => setPlaying(6)}
@@ -153,7 +152,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=05689ErDUdM'
                     volume={volume/10}
-                    light='https://j.gifs.com/Gv7ZzL.gif'
+                    light
                     playing={playing === 7}
                     onReady={() => setPlaying(7)}
                     onPlay={() => setPlaying(7)}
@@ -166,7 +165,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=IjMESxJdWkg'
                     volume={volume/10}
-                    light='https://j.gifs.com/xnNGjq.gif'
+                    light
                     playing={playing === 8}
                     onReady={() => setPlaying(8)}
                     onPlay={() => setPlaying(8)}
@@ -179,7 +178,7 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=L9Q1HUdUMp0'
                     volume={volume/10}
-                    light='https://j.gifs.com/D17R6y.gif'
+                    light
                     playing={playing === 9}
                     onReady={() => setPlaying(9)}
                     onPlay={() => setPlaying(9)}
