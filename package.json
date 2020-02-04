@@ -12,6 +12,7 @@
     "antd": "^3.26.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-player": "^1.15.2",
     "react-sound": "^1.2.0"
   },
   "devDependencies": {

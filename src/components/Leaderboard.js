@@ -106,13 +106,13 @@ const LeaderBoard = ({ dataSource, location }) => {
     },
   ];
   return (<Row type='flex' justify='center'>
-    <Col className={ Boolean(dataSource) ? styles.box : styles.loading
+    {/* <Col className={ Boolean(dataSource) ? styles.box : styles.loading
     } xs={24} sm={20} md={16} lg={12} xl={8}> 
     <Title style={{ marginTop: 16 }}>Time Per Location</Title> 
     <Spin spinning={!Boolean(dataSource)}>
     <Table rowClassName={highlight} dataSource={dataSource} columns={columns} />
     </Spin>
-     </Col>
+     </Col> */}
 
   </Row>
   )
