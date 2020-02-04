@@ -12,6 +12,7 @@ import styles from './SoundPlayer.less'
 // const chillAudio = "https://www.youtube.com/embed/ajuCAfqVWbc"
 
 const SoundPlayer = () => {
+    const [playing, setPlaying] = useState()
 
     // const [working, setWorking] = useState(true)
     // const songLogic = () => {
@@ -36,14 +37,18 @@ const SoundPlayer = () => {
             // onPlaying gets rendered every second, no clue why
             onPlaying={() => setPlayCount(count => count + 1)}
         /> */}
-        {/* {playCount < 1 && <Button type='primary'style={{marginTop: 16, marginBottom: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to playing</Button>} */}
+        {/* {playCount < 1 && <Button type='primary'style={{marginTop: 16, marginBottom: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to playing
+        onPlay={() => setPlaying(1)}</Button>} */}
      <Row>
             <Col span={8}><div className={styles.playerWrapper}>
                 <ReactPlayer
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=hHW1oY26kxQ'
                     light
-                    playing
+                    playing={playing === 1}
+                    onReady={() => setPlaying(1)}
+
+                    onPlay={() => setPlaying(1)}
                     width='100%'
                     height='100%'
                 />
@@ -54,7 +59,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=2atQnvunGCo'
                     light
-                    playing
+                    playing={playing === 2}
+                    onReady={() => setPlaying(2)}
+                    onPlay={() => setPlaying(2)}
                     width='100%'
                     height='100%'
                 />
@@ -64,7 +71,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=ZmNoiihmTXs'
                     light
-                    playing
+                    playing={playing === 3}
+                    onReady={() => setPlaying(3)}
+                    onPlay={() => setPlaying(3)}
                     width='100%'
                     height='100%'
                 />
@@ -76,7 +85,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=rbC1gN_-ACc'
                     light
-                    playing
+                    playing={playing === 4}
+                    onReady={() => setPlaying(4)}
+                    onPlay={() => setPlaying(4)}
                     width='100%'
                     height='100%'
                 />
@@ -86,7 +97,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=-WOA1Dr2EUo'
                     light
-                    playing
+                    playing={playing === 5}
+                    onReady={() => setPlaying(5)}
+                    onPlay={() => setPlaying(5)}
                     width='100%'
                     height='100%'
                 />
@@ -96,7 +109,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=g-pqmuYPHPs'
                     light
-                    playing
+                    playing={playing === 6}
+                    onReady={() => setPlaying(6)}
+                    onPlay={() => setPlaying(6)}
                     width='100%'
                     height='100%'
                 />
@@ -107,7 +122,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=05689ErDUdM'
                     light
-                    playing
+                    playing={playing === 7}
+                    onReady={() => setPlaying(7)}
+                    onPlay={() => setPlaying(7)}
                     width='100%'
                     height='100%'
                 />
@@ -117,7 +134,9 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=IjMESxJdWkg'
                     light
-                    playing
+                    playing={playing === 8}
+                    onReady={() => setPlaying(8)}
+                    onPlay={() => setPlaying(8)}
                     width='100%'
                     height='100%'
                 />
@@ -127,12 +146,15 @@ const SoundPlayer = () => {
                     className={styles.reactPlayer}
                     url='https://www.youtube.com/watch?v=L9Q1HUdUMp0'
                     light
-                    playing
+                    playing={playing === 9}
+                    onReady={() => setPlaying(9)}
+                    onPlay={() => setPlaying(9)}
                     width='100%'
                     height='100%'
                 />
             </div></Col>
       </Row>
+      
     </>
     )
 
