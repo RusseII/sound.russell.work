@@ -109,7 +109,7 @@ const SoundPlayer = () => {
             <Col span={8}><div className={styles.playerWrapper}>
                 <ReactPlayer
                     className={styles.reactPlayer}
-                    url='https://www.youtube.com/watch?v=rbC1gN_-ACc'
+                    url='https://www.youtube.com/watch?v=XULUBg_ZcAU'
                     volume={volume/10}
                     light
                     
@@ -136,7 +136,7 @@ const SoundPlayer = () => {
             <Col span={8}><div className={styles.playerWrapper}>
                 <ReactPlayer
                     className={styles.reactPlayer}
-                    url='https://www.youtube.com/watch?v=g-pqmuYPHPs'
+                    url='https://www.youtube.com/watch?v=j24Lh9BYS-4'
                     volume={volume/10}
                     light
                     playing={playing === 6}
