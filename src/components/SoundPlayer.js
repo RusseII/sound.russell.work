@@ -60,7 +60,7 @@ const SoundPlayer = () => {
     return (<>
         <Sound
             url={breakAudio}
-            playStatus={!working ? Sound.status.PLAYING : Sound.status.STOPPED}
+            playStatus={(!working && playing) ? Sound.status.PLAYING : Sound.status.STOPPED}
             loop
             volume={volume}
         // onPlaying gets rendered every second, no clue why
