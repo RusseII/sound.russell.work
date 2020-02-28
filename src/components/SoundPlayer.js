@@ -36,7 +36,7 @@ const SoundPlayer = () => {
     const [playing, setPlaying] = useState(null)
     const [volume, setVolume] = useState(startingVolume ? startingVolume : 10)
 
-    const [playingStorage, setPlayingStorage] = useState(null)
+    // const [playingStorage, setPlayingStorage] = useState(null)
     const [working, setWorking] = useState(true)
 
 
@@ -55,31 +55,20 @@ const SoundPlayer = () => {
         }
 
         setInterval(songLogic, 1000)}, [])
-    useEffect(() => {
-        const handleWorking = (working) => {
-            if (!working) {
-                setPlayingStorage(playing)
-                setPlaying(null)
-            } 
-            else {
-                setPlaying(playingStorage)
-            }
-        
-        }
-        
-        handleWorking()
-    }, [working])
+
 
     return (<>
         <Sound
-            url={working ? '' : breakAudio}
-            playStatus={Sound.status.PLAYING}
+            url={breakAudio}
+            playStatus={!working ? Sound.status.PLAYING : Sound.status.STOPPED}
             loop
+            volume={volume}
         // onPlaying gets rendered every second, no clue why
         // onPlaying={() => setPlayCount(count => count + 1)}
         />
         {/* {playCount < 1 && <Button type='primary'style={{marginTop: 16, marginBottom: 16}} onClick={() => setAllowAutoPlayHack(true)}>allow sound to playing */}
         {/* onPlay={() => setPlaying(1)}</Button>} */}
+        {console.log(working)}
         <Row>
             <Col span={8}><div className={styles.playerWrapper}>
                 <ReactPlayer
@@ -87,7 +76,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=hHW1oY26kxQ'
                     volume={volume / 10}
                     light
-                    playing={playing === 1}
+                    playing={playing === 1 && working}
                     onReady={() => setPlaying(1)}
 
                     onPlay={() => setPlaying(1)}
@@ -102,7 +91,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=2atQnvunGCo'
                     volume={volume / 10}
                     light
-                    playing={playing === 2}
+                    playing={playing === 2 && working}
                     onReady={() => setPlaying(2)}
                     onPlay={() => setPlaying(2)}
                     width='100%'
@@ -115,7 +104,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=ZmNoiihmTXs'
                     volume={volume / 10}
                     light
-                    playing={playing === 3}
+                    playing={playing === 3 && working}
                     onReady={() => setPlaying(3)}
                     onPlay={() => setPlaying(3)}
                     width='100%'
@@ -131,7 +120,7 @@ const SoundPlayer = () => {
                     volume={volume / 10}
                     light
 
-                    playing={playing === 4}
+                    playing={playing === 4 && working}
                     onReady={() => setPlaying(4)}
                     onPlay={() => setPlaying(4)}
                     width='100%'
@@ -144,7 +133,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=-WOA1Dr2EUo'
                     volume={volume / 10}
                     light
-                    playing={playing === 5}
+                    playing={playing === 5 && working}
                     onReady={() => setPlaying(5)}
                     onPlay={() => setPlaying(5)}
                     width='100%'
@@ -157,7 +146,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=j24Lh9BYS-4'
                     volume={volume / 10}
                     light
-                    playing={playing === 6}
+                    playing={playing === 6 && working}
                     onReady={() => setPlaying(6)}
                     onPlay={() => setPlaying(6)}
                     width='100%'
@@ -171,7 +160,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=05689ErDUdM'
                     volume={volume / 10}
                     light
-                    playing={playing === 7}
+                    playing={playing === 7 && working}
                     onReady={() => setPlaying(7)}
                     onPlay={() => setPlaying(7)}
                     width='100%'
@@ -184,7 +173,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=IjMESxJdWkg'
                     volume={volume / 10}
                     light
-                    playing={playing === 8}
+                    playing={playing === 8 && working}
                     onReady={() => setPlaying(8)}
                     onPlay={() => setPlaying(8)}
                     width='100%'
@@ -197,7 +186,7 @@ const SoundPlayer = () => {
                     url='https://www.youtube.com/watch?v=L9Q1HUdUMp0'
                     volume={volume / 10}
                     light
-                    playing={playing === 9}
+                    playing={playing === 9 && working}
                     onReady={() => setPlaying(9)}
                     onPlay={() => setPlaying(9)}
                     width='100%'
