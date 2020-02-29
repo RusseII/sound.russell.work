@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Sound from 'react-sound';
-import { Button, Row, Col, Icon, Slider } from 'antd'
+import {  Row, Col, Icon, Slider, Switch, Popover } from 'antd'
 
 import ReactPlayer from 'react-player'
 import styles from './SoundPlayer.less'
@@ -16,6 +16,7 @@ const IconSlider = ({ volume, setVolume }) => {
 
 
     const updateVolume = (volume) => {
+        console.log("d", volume)
         localStorage.setItem('volume', volume)
         setVolume(volume)
     }
@@ -30,13 +31,29 @@ const IconSlider = ({ volume, setVolume }) => {
     );
 }
 
+const SettingsButton = ({pomo, setPomo}) => {
+
+    const updatePomo = (checked) => {
+        localStorage.setItem('pomo', checked)
+        setPomo(checked)
+    } 
+
+    return <Popover content={<Switch checked={pomo} onChange={updatePomo} />} title="Use as pomo timer" trigger="click">
+    <Icon style={{ color: 'rgba(255,255,255,.5' }} type="setting" />
+</Popover>
+    
+}
+
 
 const SoundPlayer = () => {
     const startingVolume = localStorage.getItem("volume")
+    const startingPomo = localStorage.getItem("pomo")
+
     const [playing, setPlaying] = useState(null)
     const [volume, setVolume] = useState(startingVolume ? startingVolume : 10)
+    console.log(volume)
+    const [pomo, setPomo] = useState(startingPomo ? startingPomo: false)
 
-    // const [playingStorage, setPlayingStorage] = useState(null)
     const [working, setWorking] = useState(true)
 
 
@@ -45,7 +62,7 @@ const SoundPlayer = () => {
         const songLogic = () => {
             const currentMinutes = new Date().getMinutes()
             if (currentMinutes >= 0 && currentMinutes < 5 || (currentMinutes >= 30 && currentMinutes < 35)) {
-                setWorking(false)
+                if (pomo) setWorking(false)
     
             }
             else {
@@ -54,8 +71,7 @@ const SoundPlayer = () => {
     
         }
 
-        setInterval(songLogic, 1000)}, [])
-
+        setInterval(songLogic, 1000)}, [pomo])
 
     return (<>
         <Sound
@@ -194,9 +210,12 @@ const SoundPlayer = () => {
                 />
             </div></Col>
         </Row>
+
+<SettingsButton pomo={pomo} setPomo={setPomo}/>
         <Row type='flex' justify='center'>
             <IconSlider volume={volume} setVolume={setVolume}></IconSlider>
         </Row>
+        
     </>
     )
 
