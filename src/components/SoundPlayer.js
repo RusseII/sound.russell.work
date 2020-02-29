@@ -39,7 +39,7 @@ const SettingsButton = ({pomo, setPomo}) => {
     } 
 
     return <Popover content={<Switch checked={pomo} onChange={updatePomo} />} title="Use as pomo timer" trigger="click">
-    <Icon style={{ color: 'rgba(255,255,255,.5' }} type="setting" />
+    <Icon style={{ marginTop: 16, color: 'rgba(255,255,255,.5' }} type="setting" />
 </Popover>
     
 }
