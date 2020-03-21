@@ -2,7 +2,6 @@
 
 const Spot = () => (
     <>
-
 <iframe src="https://open.spotify.com/embed/playlist/0NCspsyf0OS4BsPgGhkQXM" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 <iframe src="https://open.spotify.com/embed/playlist/2X5BPknxexv0e7DdDKUj0C" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 <iframe src="https://open.spotify.com/embed/playlist/4GOnSXcPfwj1rWKcEIc3uu" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
