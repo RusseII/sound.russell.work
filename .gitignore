@@ -9,11 +9,8 @@ node_modules/
 /package-lock.json
 
 # production
-/dist
+/build
 
 # misc
 .DS_Store
 
-# umi
-.umi
-.umi-production
