@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
@@ -20,7 +21,7 @@ const isLocalhost = Boolean(
     )
 );
 
-export function register(config) {
+export async function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -139,3 +140,34 @@ export function unregister() {
       });
   }
 }
+
+
+
+function receivePushNotification(event) {
+  console.log("[Service Worker] Push Received.");
+
+  const { image, tag, url, title, text } = event.data.json();
+
+  const options = {
+    data: url,
+    body: text,
+    icon: image,
+    vibrate: [200, 100, 200],
+    tag: tag,
+    image: image,
+    badge: "https://spyna.it/icons/favicon.ico",
+    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+}
+
+function openPushNotification(event) {
+  console.log("[Service Worker] Notification click Received.", event.notification.data);
+  
+  event.notification.close();
+  // eslint-disable-next-line no-undef
+  event.waitUntil(clients.openWindow(event.notification.data));
+}
+
+self.addEventListener("push", receivePushNotification);
+self.addEventListener("notificationclick", openPushNotification);

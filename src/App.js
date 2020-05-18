@@ -1,11 +1,41 @@
-import React from 'react';
+// import React from 'react';
 import './App.css';
-import SpotifyPlayer from './components/SpotifyPlayer'
+import AlertPage from './pages/alertPage'
+import SoundPage from './pages/soundPage'
 
-function App() {
+
+
+// function App() {
+//   return (
+//     <SpotifyPlayer/>
+//   );
+// }
+
+// export default App;
+
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+
+} from "react-router-dom";
+
+export default function App() {
   return (
-    <SpotifyPlayer/>
+    <Router>
+      
+        <Switch>
+          <Route path="/alert">
+            <AlertPage/>
+          </Route>
+          <Route path="/">
+          <SoundPage/>
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 
-export default App;
+
